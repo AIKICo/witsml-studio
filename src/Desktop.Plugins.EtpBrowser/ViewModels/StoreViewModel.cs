@@ -30,6 +30,8 @@ using PDS.WITSMLstudio.Connections;
 using PDS.WITSMLstudio.Framework;
 using PDS.WITSMLstudio.Desktop.Core.Runtime;
 using PDS.WITSMLstudio.Desktop.Core.ViewModels;
+using Microsoft.Win32;
+using System.IO;
 
 namespace PDS.WITSMLstudio.Desktop.Plugins.EtpBrowser.ViewModels
 {
@@ -248,6 +250,20 @@ namespace PDS.WITSMLstudio.Desktop.Plugins.EtpBrowser.ViewModels
             Model.Store.Name = emptyString;
             Model.Store.ContentType = emptyString;
             Data.SetText(emptyString);
+            ResetDataEditorBorderColor();
+        }
+
+        /// <summary>
+        /// Clears the input settings.
+        /// </summary>
+        public void LoadWitsmlDocument()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var xmlDoc = File.ReadAllText(openFileDialog.FileName);
+                Data.SetText(xmlDoc);                                                   
+            }
             ResetDataEditorBorderColor();
         }
 
