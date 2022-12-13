@@ -8,7 +8,7 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:app="clr-namespace:PDS.WITSMLstudio.Desktop.Core.Behaviors;assembly=PDS.WITSMLstudio.Desktop.Core"
              xmlns:conv="clr-namespace:PDS.WITSMLstudio.Desktop.Core.Converters;assembly=PDS.WITSMLstudio.Desktop.Core"
-             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="500">
+             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="661.053">
 
     <UserControl.Resources>
         <conv:NullToBooleanConverter x:Key="NullToBooleanConverter" />
@@ -51,8 +51,9 @@
                           ItemsSource="{Binding Parent.Parent.DataObjects}"
                           SelectedItem="{Binding Parent.Parent.DataObject}" />
 
-                <!--
                 <Button x:Name="OpenQuery" Content="Open" Width="60" Margin="0,5,5,5" IsEnabled="{Binding Model.WitsmlVersion, Converter={StaticResource NullToBooleanConverter}}" />
+
+                <!--
                 <Button x:Name="SaveQuery" Content="Save" Width="60" Margin="0,5,5,5" IsEnabled="{Binding Model.WitsmlVersion, Converter={StaticResource NullToBooleanConverter}}" />
                 -->
             </StackPanel>

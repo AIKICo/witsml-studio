@@ -16,9 +16,11 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
+using System.IO;
 using System.Windows;
 using Caliburn.Micro;
 using ICSharpCode.AvalonEdit.Document;
+using Microsoft.Win32;
 using PDS.WITSMLstudio.Desktop.Core.Runtime;
 using PDS.WITSMLstudio.Desktop.Core.ViewModels;
 
@@ -128,7 +130,12 @@ namespace PDS.WITSMLstudio.Desktop.Plugins.WitsmlBrowser.ViewModels.Request
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void OpenQuery(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Open coming soon");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var xmlDoc = File.ReadAllText(openFileDialog.FileName);
+                XmlQuery.SetText(xmlDoc);
+            }
         }
 
         /// <summary>
