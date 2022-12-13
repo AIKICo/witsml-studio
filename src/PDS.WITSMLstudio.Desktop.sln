@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{E7531DA0-51BD-4C58-B020-FFCE2DFBCED6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -73,8 +73,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.UserAdmin", "..\ext\witsml\src\Store.UserAdmin\Store.UserAdmin.csproj", "{347D0962-B422-4ACB-97AA-4BB78854A282}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Web", "..\ext\witsml\src\Store.Web\Store.Web.csproj", "{5FF377F4-56C5-49D9-BA0A-1955A33C4902}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "..\ext\witsml\src\Store\Store.csproj", "{9E51075C-D571-42F5-A311-0589231DBA9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,10 +176,6 @@ Global
 		{5FF377F4-56C5-49D9-BA0A-1955A33C4902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF377F4-56C5-49D9-BA0A-1955A33C4902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF377F4-56C5-49D9-BA0A-1955A33C4902}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E51075C-D571-42F5-A311-0589231DBA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E51075C-D571-42F5-A311-0589231DBA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E51075C-D571-42F5-A311-0589231DBA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E51075C-D571-42F5-A311-0589231DBA9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
