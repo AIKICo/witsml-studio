@@ -171,6 +171,7 @@ namespace PDS.WITSMLstudio.Desktop.Plugins.EtpBrowser.ViewModels
                     FindObjects();
                     break;
             }
+            Data.SetText(string.Empty);
         }
 
         /// <summary>
