@@ -263,7 +263,8 @@ namespace PDS.WITSMLstudio.Desktop.Plugins.EtpBrowser.ViewModels
             if (openFileDialog.ShowDialog() == true)
             {
                 var xmlDoc = File.ReadAllText(openFileDialog.FileName);
-                Data.SetText(xmlDoc);                                                   
+                Data.SetText(xmlDoc);
+                NewUuid();
             }
             ResetDataEditorBorderColor();
         }
