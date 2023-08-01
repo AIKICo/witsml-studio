@@ -1,0 +1,17 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://witsserver.oxinpetro.com/api/soap"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, WitsmlStoreServiceReference"
+    ],
+    "sync": true,
+    "targetFramework": "net7.0",
+    "typeReuseMode": "All"
+  }
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:i0="http://www.witsml.org/wsdl/120" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="WitsmlStoreService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WitsmlStore_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:import namespace="http://www.witsml.org/wsdl/120" location="https://witsserver.oxinpetro.com/WitsmlStore.svc?wsdl=wsdl0" />
+  <wsdl:types />
+  <wsdl:binding name="WitsmlStore" type="i0:IWitsmlStore">
+    <wsp:PolicyReference URI="#WitsmlStore_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="WMLS_AddToStore">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_AddToStore" style="rpc" />
+      <wsdl:input name="WMLS_AddToStoreRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_AddToStoreResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_DeleteFromStore">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_DeleteFromStore" style="rpc" />
+      <wsdl:input name="WMLS_DeleteFromStoreRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_DeleteFromStoreResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetBaseMsg">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_GetBaseMsg" style="rpc" />
+      <wsdl:input name="WMLS_GetBaseMsgRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_GetBaseMsgResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetCap">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_GetCap" style="rpc" />
+      <wsdl:input name="WMLS_GetCapRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_GetCapResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetFromStore">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_GetFromStore" style="rpc" />
+      <wsdl:input name="WMLS_GetFromStoreRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_GetFromStoreResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetVersion">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_GetVersion" style="rpc" />
+      <wsdl:input name="WMLS_GetVersionRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_GetVersionResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_UpdateInStore">
+      <soap:operation soapAction="http://www.witsml.org/action/120/Store.WMLS_UpdateInStore" style="rpc" />
+      <wsdl:input name="WMLS_UpdateInStoreRequest">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="WMLS_UpdateInStoreResponse">
+        <soap:body use="encoded" namespace="http://www.witsml.org/message/120" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WitsmlStoreService">
+    <wsdl:port name="WitsmlStore" binding="tns:WitsmlStore">
+      <soap:address location="https://witsserver.oxinpetro.com/WitsmlStore.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

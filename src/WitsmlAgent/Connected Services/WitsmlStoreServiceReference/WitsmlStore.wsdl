@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.witsml.org/wsdl/120" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" targetNamespace="http://www.witsml.org/wsdl/120" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.witsml.org/wsdl/120/Imports">
+      <xsd:import namespace="http://www.w3.org/2001/XMLSchema" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WMLS_AddToStoreRequest">
+    <wsdl:part name="WMLtypeIn" type="xsd:string" />
+    <wsdl:part name="XMLin" type="xsd:string" />
+    <wsdl:part name="OptionsIn" type="xsd:string" />
+    <wsdl:part name="CapabilitiesIn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_AddToStoreResponse">
+    <wsdl:part name="Result" type="xsd:short" />
+    <wsdl:part name="SuppMsgOut" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_DeleteFromStoreRequest">
+    <wsdl:part name="WMLtypeIn" type="xsd:string" />
+    <wsdl:part name="QueryIn" type="xsd:string" />
+    <wsdl:part name="OptionsIn" type="xsd:string" />
+    <wsdl:part name="CapabilitiesIn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_DeleteFromStoreResponse">
+    <wsdl:part name="Result" type="xsd:short" />
+    <wsdl:part name="SuppMsgOut" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetBaseMsgRequest">
+    <wsdl:part name="ReturnValueIn" type="xsd:short" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetBaseMsgResponse">
+    <wsdl:part name="Result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetCapRequest">
+    <wsdl:part name="OptionsIn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetCapResponse">
+    <wsdl:part name="Result" type="xsd:short" />
+    <wsdl:part name="CapabilitiesOut" type="xsd:string" />
+    <wsdl:part name="SuppMsgOut" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetFromStoreRequest">
+    <wsdl:part name="WMLtypeIn" type="xsd:string" />
+    <wsdl:part name="QueryIn" type="xsd:string" />
+    <wsdl:part name="OptionsIn" type="xsd:string" />
+    <wsdl:part name="CapabilitiesIn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetFromStoreResponse">
+    <wsdl:part name="Result" type="xsd:short" />
+    <wsdl:part name="XMLout" type="xsd:string" />
+    <wsdl:part name="SuppMsgOut" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_GetVersionRequest" />
+  <wsdl:message name="WMLS_GetVersionResponse">
+    <wsdl:part name="Result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_UpdateInStoreRequest">
+    <wsdl:part name="WMLtypeIn" type="xsd:string" />
+    <wsdl:part name="XMLin" type="xsd:string" />
+    <wsdl:part name="OptionsIn" type="xsd:string" />
+    <wsdl:part name="CapabilitiesIn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WMLS_UpdateInStoreResponse">
+    <wsdl:part name="Result" type="xsd:short" />
+    <wsdl:part name="SuppMsgOut" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="IWitsmlStore">
+    <wsdl:operation name="WMLS_AddToStore">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_AddToStore" name="WMLS_AddToStoreRequest" message="tns:WMLS_AddToStoreRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_AddToStoreResponse" name="WMLS_AddToStoreResponse" message="tns:WMLS_AddToStoreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_DeleteFromStore">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_DeleteFromStore" name="WMLS_DeleteFromStoreRequest" message="tns:WMLS_DeleteFromStoreRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_DeleteFromStoreResponse" name="WMLS_DeleteFromStoreResponse" message="tns:WMLS_DeleteFromStoreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetBaseMsg">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_GetBaseMsg" name="WMLS_GetBaseMsgRequest" message="tns:WMLS_GetBaseMsgRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_GetBaseMsgResponse" name="WMLS_GetBaseMsgResponse" message="tns:WMLS_GetBaseMsgResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetCap">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_GetCap" name="WMLS_GetCapRequest" message="tns:WMLS_GetCapRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_GetCapResponse" name="WMLS_GetCapResponse" message="tns:WMLS_GetCapResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetFromStore">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_GetFromStore" name="WMLS_GetFromStoreRequest" message="tns:WMLS_GetFromStoreRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_GetFromStoreResponse" name="WMLS_GetFromStoreResponse" message="tns:WMLS_GetFromStoreResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_GetVersion">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_GetVersion" name="WMLS_GetVersionRequest" message="tns:WMLS_GetVersionRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_GetVersionResponse" name="WMLS_GetVersionResponse" message="tns:WMLS_GetVersionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WMLS_UpdateInStore">
+      <wsdl:input wsaw:Action="http://www.witsml.org/action/120/Store.WMLS_UpdateInStore" name="WMLS_UpdateInStoreRequest" message="tns:WMLS_UpdateInStoreRequest" />
+      <wsdl:output wsaw:Action="http://www.witsml.org/wsdl/120/IWitsmlStore/WMLS_UpdateInStoreResponse" name="WMLS_UpdateInStoreResponse" message="tns:WMLS_UpdateInStoreResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
