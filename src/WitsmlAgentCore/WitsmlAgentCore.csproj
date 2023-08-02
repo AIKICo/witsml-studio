@@ -8,11 +8,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
+    <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.10.*" />
     <PackageReference Include="System.ServiceModel.Federation" Version="4.10.*" />
     <PackageReference Include="System.ServiceModel.Http" Version="4.10.*" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.*" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AIKI.CO.OilWell.Monitoring.Models">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.Viewer\bin\Release\AIKI.CO.OilWell.Monitoring.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="AIKI.CO.OilWell.Monitoring.RavenDB">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.Viewer\bin\Release\AIKI.CO.OilWell.Monitoring.RavenDB.dll</HintPath>
+    </Reference>
+    <Reference Include="AIKI.CO.OilWell.Monitoring.Settings">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.Viewer\bin\Release\AIKI.CO.OilWell.Monitoring.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="AIKI.CO.OilWell.Monitoring.WitsML">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.WitsML\bin\Release\netstandard2.0\AIKI.CO.OilWell.Monitoring.WitsML.dll</HintPath>
+    </Reference>
+    <Reference Include="Energistics.DataAccess">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.WitsML\bin\Release\netstandard2.0\Energistics.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Energistics.DataAccess.WITSML">
+      <HintPath>..\..\..\..\Projects-Windows\nisoc-oilwell-monitoring(4.8)\AIKI.CO.OilWell.Monitoring.WitsML\bin\Release\netstandard2.0\Energistics.DataAccess.WITSML.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
