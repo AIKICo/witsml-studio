@@ -29,38 +29,48 @@ Console.WriteLine("SOAP Client Creating...");
 
 WitsmlStoreClient client = new(binding, endpoint);
 
-string out1, out2;
-
 client.ClientCredentials.UserName.UserName = "administrator";
 client.ClientCredentials.UserName.Password = "Kabinet95##@";
 client.Endpoint.EndpointBehaviors.Add(new CorrelationEndpointBehavior());
 
 
-Console.WriteLine("Listening...");
+Console.WriteLine("Start Listening...");
 using (IConnection messageBrokerConnection = ConstantsProperties.GetMessageBrokerConnection())
 {
     using IModel channel = messageBrokerConnection.CreateModel();
     var messageReceiver = new WitsmlDataMessageReceiver(channel);
-    MudLogCreator witsmlLog = new MudLogCreator();
-    List<WellRecord> records = new();
+    MudLogCreator witsmlLog = new();
+    Dictionary<string, List<WellRecord>> logRecords = new();
 
-    messageReceiver.HandleMessage += async (s, e) =>
+    messageReceiver.HandleMessage += (s, e) =>
     {
-        if (records.Count == 5)
+        if(e.WellInfoKey==null) return;
+
+        if (!logRecords.ContainsKey(e.WellInfoKey))
         {
-            ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == e.WellInfoKey);
-            var logs = witsmlLog.GenerateMudLog_1_4_1_1(records, 5,withoutSave:true);
-            var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
-            string suppMessage;
-            var response = client.WMLS_AddToStore("mudLog", xmlIn, null, null, out suppMessage);
-            records.Clear();
+            logRecords.Add(e.WellInfoKey, new List<WellRecord>());
+            logRecords[e.WellInfoKey].Add(e.WellRecord!.Clone());
         }
         else
         {
-            records.Add(item: e.WellRecord!.Clone());
+            logRecords[e.WellInfoKey].Add(e.WellRecord!.Clone());
         }
 
-        var f = e;
+        foreach(var item in logRecords)
+        {
+            if (item.Value.Count == 5)
+            {
+                ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == item.Key);
+                var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value, 5, withoutSave: true);
+                var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
+                var response = client.WMLS_AddToStore("mudLog", xmlIn, null, null, out string suppMessage);
+                if (response == 1)
+                {
+                    Console.WriteLine($"Writing Witsmllog at {item.Value.First().Rdtime} for {item.Key}");
+                }
+                item.Value.Clear();
+            }
+        }
     };
     var consumeTag = channel.BasicConsume(
         queue: "OPC_ALL_WITSSERVER_QUEUE",
