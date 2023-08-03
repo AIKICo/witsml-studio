@@ -1,14 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-using AIKI.CO.OilWell.Monitoring.Models;
+﻿using AIKI.CO.OilWell.Monitoring.Models;
 using AIKI.CO.OilWell.Monitoring.RabbitmqHelper;
 using AIKI.CO.OilWell.Monitoring.RavenDB;
 using AIKI.CO.OilWell.Monitoring.Settings;
 using AIKI.CO.OilWell.Monitoring.WitsML;
 using Energistics.DataAccess;
 using RabbitMQ.Client;
-using System.Net;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Text;
 using WitsmlAgentCore;
 using WitsmlStoreServiceReference;
@@ -16,7 +13,7 @@ using WitsmlStoreServiceReference;
 List<RecordsInfo>? wellsInfo = null;
 
 Console.WriteLine("Starting...");
-BasicHttpsBinding binding = new BasicHttpsBinding();
+BasicHttpsBinding binding = new();
 binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Basic;
 
 EndpointAddress endpoint = new(new Uri("https://witsserver.oxinpetro.com/WitsmlStore.svc"));
@@ -42,7 +39,7 @@ using (IConnection messageBrokerConnection = ConstantsProperties.GetMessageBroke
     MudLogCreator witsmlLog = new();
     Dictionary<string, List<WellRecord>> logRecords = new();
 
-    messageReceiver.HandleMessage += (s, e) =>
+    messageReceiver.HandleMessage += async (s, e) =>
     {
         if(e.WellInfoKey==null) return;
 
@@ -63,12 +60,19 @@ using (IConnection messageBrokerConnection = ConstantsProperties.GetMessageBroke
                 ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == item.Key);
                 var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value, 5, withoutSave: true);
                 var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
-                var response = client.WMLS_AddToStore("mudLog", xmlIn, null, null, out string suppMessage);
-                if (response == 1)
+                var response = await client.WMLS_AddToStoreAsync(new WMLS_AddToStoreRequest
+                {
+                    WMLtypeIn = "mudLog",
+                    CapabilitiesIn=null,
+                    OptionsIn = null,
+                    XMLin = xmlIn
+                });
+
+                if (response.Result == 1)
                 {
                     Console.WriteLine($"Writing Witsmllog at {item.Value.First().Rdtime} for {item.Key}");
+                    item.Value.Clear();
                 }
-                item.Value.Clear();
             }
         }
     };
