@@ -58,7 +58,7 @@ using (IConnection messageBrokerConnection = ConstantsProperties.GetMessageBroke
             if (item.Value.Count == 5)
             {
                 ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == item.Key);
-                var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value, 5, withoutSave: true);
+                var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value.ToList(), 5, withoutSave: true);
                 var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
                 var response = await client.WMLS_AddToStoreAsync(new WMLS_AddToStoreRequest
                 {
