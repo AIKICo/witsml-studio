@@ -57,21 +57,29 @@ using (IConnection messageBrokerConnection = ConstantsProperties.GetMessageBroke
         {
             if (item.Value.Count == 5)
             {
-                ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == item.Key);
-                var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value.ToList(), 5, withoutSave: true);
-                var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
-                var response = await client.WMLS_AddToStoreAsync(new WMLS_AddToStoreRequest
+                try
                 {
-                    WMLtypeIn = "mudLog",
-                    CapabilitiesIn=null,
-                    OptionsIn = null,
-                    XMLin = xmlIn
-                });
+                    ConstantsProperties.SelectedWellInfo = wellsInfo.SingleOrDefault(x => x.Id == item.Key);
+                    if (ConstantsProperties.SelectedWellInfo == null) return;
+                    var logs = witsmlLog.GenerateMudLog_1_4_1_1(item.Value.ToList(), 5, withoutSave: true);
+                    var xmlIn = EnergisticsConverter.ObjectToXml(logs, Encoding.UTF8);
+                    var response = await client.WMLS_AddToStoreAsync(new WMLS_AddToStoreRequest
+                    {
+                        WMLtypeIn = "mudLog",
+                        CapabilitiesIn = null,
+                        OptionsIn = null,
+                        XMLin = xmlIn
+                    });
 
-                if (response.Result == 1)
+                    if (response.Result == 1)
+                    {
+                        Console.WriteLine($"Writing Witsmllog at {item.Value.First().Rdtime} for {item.Key}");
+                        item.Value.Clear();
+                    }
+                }
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"Writing Witsmllog at {item.Value.First().Rdtime} for {item.Key}");
-                    item.Value.Clear();
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
