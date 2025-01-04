@@ -82,6 +82,9 @@
   <PropertyGroup>
     <ApplicationIcon>WitsmlStudio.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PDS.WITSMLstudio.Desktop.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Avro, Version=0.9.0.0, Culture=neutral, PublicKeyToken=b1248d7eeb9d0814, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\Apache.Avro.1.7.7.2\lib\Avro.dll</HintPath>
